@@ -1,0 +1,219 @@
+/* Perusasetukset */
+:root {
+    --bg: #f5f7fb;
+    --primary: #2456a6;
+    --primary-light: #3f73cf;
+    --accent: #f2b705;
+    --text: #1f2430;
+    --muted: #6b7280;
+    --card-bg: #ffffff;
+}
+
+body {
+    margin: 0;
+    font-family: system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+}
+
+/* header */
+header {
+    background: #fff;
+    border-bottom: 1px solid #e5e7eb;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.header-inner {
+    max-width: 1200px;
+    margin: auto;
+    padding: 0.75rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    height: 48px;
+}
+
+nav {
+    display: flex;
+    gap: 1.25rem;
+}
+
+nav a {
+    text-decoration: none;
+    color: var(--text);
+    padding-bottom: 4px;
+    border-bottom: 2px solid transparent;
+}
+
+nav a.active,
+nav a:hover {
+    border-color: var(--accent);
+}
+
+/* Hero */
+.hero {
+    background: url("banner.png") center/cover no-repeat;
+    color: white;
+    position: relative;
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.45);
+}
+
+.hero-inner {
+    position: relative;
+    max-width: 1200px;
+    margin: auto;
+    padding: 4rem 1.5rem;
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 3rem;
+}
+
+.hero-text h1 {
+    font-size: 2.4rem;
+    margin: 0 0 1rem;
+}
+
+.hero-cta {
+    padding: 0.85rem 1.6rem;
+    border-radius: 999px;
+    border: none;
+    background: var(--accent);
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.hero-side {
+    background: rgba(15,23,42,0.7);
+    padding: 1.5rem;
+    border-radius: 1rem;
+}
+
+/* Peli-osio */
+.section {
+    max-width: 1200px;
+    margin: auto;
+    padding: 2.5rem 1.5rem;
+}
+
+.section-title {
+    font-size: 1.4rem;
+    margin-bottom: 1.5rem;
+}
+
+.games-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+}
+
+.game-card {
+    background: var(--card-bg);
+    padding: 1.5rem;
+    border-radius: 1rem;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+}
+
+.game-icon {
+    width: 52px;
+    height: 52px;
+    background: var(--primary-light);
+    border-radius: 16px;
+}
+
+.game-title {
+    font-weight: 600;
+    margin-top: 0.75rem;
+}
+
+.game-btn {
+    margin-top: 1rem;
+    padding: 0.6rem 1.2rem;
+    border-radius: 999px;
+    border: none;
+    background: var(--primary);
+    color: white;
+    cursor: pointer;
+}
+
+/* Info-osio */
+.centered-info {
+    display: flex;
+    justify-content: center;
+}
+
+.centered-info .info-text {
+    max-width: 700px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.section-title {
+    text-align: center;
+    width: 100%;
+}
+
+.info-text h3 {
+    margin: 0;
+    font-size: 1.2rem;
+    color: var(--primary);
+}
+
+.info-text p {
+    margin: 0;
+    font-size: 0.95rem;
+    color: var(--muted);
+}
+
+
+/* footer */
+footer {
+    background: #111827;
+    color: #9ca3af;
+}
+
+.footer-inner {
+    max-width: 1200px;
+    margin: auto;
+    padding: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Responsiivisuus */
+@media (max-width: 900px) {
+    .hero-inner {
+        grid-template-columns: 1fr;
+    }
+
+    .games-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .info-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 640px) {
+    nav {
+        flex-wrap: wrap;
+        gap: 0.75rem;
+    }
+
+    .games-grid {
+        grid-template-columns: 1fr;
+    }
+}
