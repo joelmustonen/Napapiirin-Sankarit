@@ -89,6 +89,9 @@ const scoreEl = document.getElementById("score");
 const nextBtn = document.getElementById("nextBtn");
 const restartBtn = document.getElementById("restartBtn");
 const progressBar = document.getElementById("progressBar");
+const soundCorrect = document.getElementById("sound-oikea");
+const soundWrong = document.getElementById("sound-väärä");
+
 
 const totalQuestions = questions.length;
 
@@ -143,9 +146,18 @@ function selectAnswer(button, index) {
         button.classList.add("correct");
         score++;
         scoreEl.textContent = score;
+
+        // Oikean vastauksen ääni
+        soundCorrect.currentTime = 0;
+        soundCorrect.play();
+
     } else {
         button.classList.add("wrong");
         allButtons[q.correct].classList.add("correct");
+
+        // Väärän vastauksen ääni
+        soundWrong.currentTime = 0;
+        soundWrong.play();
     }
 
     nextBtn.disabled = false;
