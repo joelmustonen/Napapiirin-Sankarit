@@ -137,6 +137,8 @@ nav a:hover {
 }
 
 .game-btn {
+    display: inline-block;
+    text-decoration: none;
     margin-top: 1rem;
     padding: 0.6rem 1.2rem;
     border-radius: 999px;
