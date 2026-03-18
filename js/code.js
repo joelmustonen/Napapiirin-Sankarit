@@ -67,6 +67,17 @@ const questions = [
     }
 ];
 
+// Sekoitetaan kysymykset Fisher–Yates algrorytmillä
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+}
+
+// Sekoitetaan kysymykset ennen pelin alkua
+shuffleArray(questions);
+
 /* muuttujat */
 let currentQuestion = 0; // Seuraa monesko kysymys on menossa
 let score = 0;           // Pelaajan pisteet
@@ -89,17 +100,20 @@ function loadQuestion() {
     // Tyhjennetään vanhat vastaukset
     answersEl.innerHTML = "";
 
-    // Luodaan vastausnapit
-    q.answers.forEach((answer, index) => {
-        const btn = document.createElement("button");
-        btn.classList.add("answer-btn");
-        btn.textContent = answer;
+    // Luodaan kopio vastauksista ja sekoitetaan ne
+    let shuffledAnswers = q.answers.map((a, i) => ({ text: a, index: i }));
+    shuffleArray(shuffledAnswers);
 
-        // Kun nappia klikataan = tarkistetaan vastaus
-        btn.onclick = () => selectAnswer(btn, index);
+    // Luodaan napit sekoitetussa järjestyksessä
+    shuffledAnswers.forEach(answerObj => {
+    const btn = document.createElement("button");
+    btn.classList.add("answer-btn");
+    btn.textContent = answerObj.text;
 
-        answersEl.appendChild(btn);
-    });
+    btn.onclick = () => selectAnswer(btn, answerObj.index);
+
+    answersEl.appendChild(btn);
+});
 
     // Seuraava-nappi pois käytöstä kunnes vastaus valittu
     nextBtn.disabled = true;
