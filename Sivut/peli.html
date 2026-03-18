@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+    <meta charset="UTF-8">
+    <title>Saamenkielen peli</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="../tyylit/pelisivu.css">
+</head>
+
+<body>
+
+    <!-- sama tyyli kuin muilla sivuilla -->
+    <header>
+        <div class="header-inner">
+            <div class="logo-area">
+                <img src="NP.png" alt="Logo" class="logo">
+                <div class="site-title">Napapiirin Sankarit</div>
+            </div>
+
+            <nav>
+                <a href="index.html">Aloitus</a>
+                <a href="peli.html" class="active">Saamenkielen peli</a>
+                <a href="#">Peli 2</a>
+                <a href="#">Peli 3</a>
+                <a href="index.html#info">Tietoa projektista</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Peliosa -->
+    <section class="section" id="game">
+        <h2 class="section-title">Saamenkielen peli</h2>
+
+        <!-- Pelin container -->
+        <div class="game-container">
+
+            <!-- Ohjeet -->
+            <aside class="game-sidebar">
+                <h3>Ohjeet</h3>
+                <p>Valitse oikea vastaus. Saat pisteen jokaisesta oikeasta vastauksesta.</p>
+            </aside>
+
+            <!-- Varsinainen pelialue -->
+            <div class="game-area">
+
+                <!-- Kysymys tulee tähän JavaScriptillä -->
+                <div id="question" class="game-question"></div>
+
+                <!-- Vastausvaihtoehdot tulevat tähän JavaScriptillä -->
+                <div id="answers" class="game-answers"></div>
+
+                <!-- Seuraava-nappi, aktivoituu vasta kun vastaus valittu -->
+                <button id="nextBtn" class="game-next" disabled>Seuraava</button>
+            </div>
+
+                 <!-- Aloita uudestaan -nappi (piilotettu aluksi) -->
+                <button id="restartBtn" class="game-restart" style="display:none;">Aloita uudestaan</button>
+
+
+            <!-- Pisteet -->
+            <aside class="game-score">
+                <h3>Pisteet</h3>
+                <div id="score">0</div>
+            </aside>
+
+        </div>
+    </section>
+
+    <!-- Pelin logiikka -->
+    <script src="../js/code.js"></script>
+
+</body>
+</html>
