@@ -14,6 +14,56 @@ const questions = [
         question: "Mitä tarkoittaa 'muorra'?",
         answers: ["Puu", "Aurinko", "Vesi", "Koti"],
         correct: 0
+    },
+    {
+        question: "Mikä on 'njalla'?",
+        answers: ["Varasto", "Joki", "Kivi", "Kettu"],
+        correct: 0
+    },
+    {
+        question: "Mitä tarkoittaa 'beaivi'?",
+        answers: ["Aurinko", "Lintu", "Poro", "Metsä"],
+        correct: 0
+    },
+    {
+        question: "Mikä on 'mátki' suomeksi?",
+        answers: ["Matka", "Maito", "Metsä", "Kala"],
+        correct: 0
+    },
+    {
+        question: "Mitä tarkoittaa 'ruoktu'?",
+        answers: ["Koti", "Puu", "Lumi", "Koira"],
+        correct: 0
+    },
+    {
+        question: "Mikä on 'eanan' suomeksi?",
+        answers: ["Maa", "Kala", "Kylä", "Vuori"],
+        correct: 0
+    },
+    {
+        question: "Mitä tarkoittaa 'váhnemat'?",
+        answers: ["Vanhemmat", "Lapset", "Sisarukset", "Ystävät"],
+        correct: 0
+    },
+    {
+        question: "Mikä on 'suolu' suomeksi?",
+        answers: ["Suo", "Sieni", "Puu", "Kivi"],
+        correct: 0
+    },
+    {
+        question: "Mitä tarkoittaa 'boazu'?",
+        answers: ["Poro", "Kala", "Kettu", "Lintu"],
+        correct: 0
+    },
+    {
+        question: "Mikä on 'luomi' suomeksi?",
+        answers: ["Lumi", "Leipä", "Kivi", "Puu"],
+        correct: 0
+    },
+    {
+        question: "Mitä tarkoittaa 'vázzit'?",
+        answers: ["Kävellä", "Juosta", "Nukkua", "Syödä"],
+        correct: 0
     }
 ];
 
