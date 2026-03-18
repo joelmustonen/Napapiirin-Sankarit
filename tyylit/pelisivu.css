@@ -6,13 +6,26 @@
     --text: #1f2430;
     --muted: #6b7280;
     --card-bg: #ffffff;
+    --bg: #f5f7fb;
+}
+
+/* Sticky footer */
+html, body {
+    height: 100%;
+    margin: 0;
 }
 
 body {
-    margin: 0;
+    display: flex;
+    flex-direction: column;
     font-family: system-ui, sans-serif;
     background: var(--bg);
     color: var(--text);
+}
+
+/* Main venyy täyttämään tilan */
+main {
+    flex: 1;
 }
 
 /* header */
@@ -54,14 +67,10 @@ nav a:hover {
     border-color: var(--accent);
 }
 
-.logo {
-    height: 50px;
-}
-
 /* Pelialueen container */
 .game-container {
     display: grid;
-    grid-template-columns: 1fr 2fr 1fr; /* Sivupalkki – Pelialue – Pisteet */
+    grid-template-columns: 1fr 2fr 1fr; /* Ohjeet – Pelialue – Pisteet */
     gap: 2rem;
     max-width: 1200px;
     margin: auto;
@@ -177,7 +186,20 @@ nav a:hover {
     background: #ffd75a;
 }
 
+/* Footer */
+footer {
+    background: #111827;
+    color: #9ca3af;
+    margin-top: auto;
+}
 
+.footer-inner {
+    max-width: 1200px;
+    margin: auto;
+    padding: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+}
 
 /* Responsiivisuus */
 @media (max-width: 900px) {

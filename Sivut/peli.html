@@ -5,12 +5,13 @@
     <title>Saamenkielen peli</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <!-- Pelisivun oma CSS -->
     <link rel="stylesheet" href="../tyylit/pelisivu.css">
 </head>
 
 <body>
 
-    <!-- sama tyyli kuin muilla sivuilla -->
+    <!-- Header -->
     <header>
         <div class="header-inner">
             <div class="logo-area">
@@ -28,50 +29,64 @@
         </div>
     </header>
 
-    <!-- Peliosa -->
-    <section class="section" id="game">
-        <h2 class="section-title">Saamenkielen peli</h2>
+    <!-- Koko pelin sisältö -->
+    <main>
 
-        <!-- Pelin container -->
-        <div class="game-container">
+        <!-- Peliosa -->
+        <section class="section" id="game">
+            <h2 class="section-title">Saamenkielen peli</h2>
 
-            <!-- Ohjeet -->
-            <aside class="game-sidebar">
-                <h3>Ohjeet</h3>
-                <p>Valitse oikea vastaus. Saat pisteen jokaisesta oikeasta vastauksesta.</p>
-            </aside>
+            <!-- Pelin container -->
+            <div class="game-container">
 
-            <!-- Varsinainen pelialue -->
-            <div class="game-area">
+                <!-- Ohjeet -->
+                <aside class="game-sidebar">
+                    <h3>Ohjeet</h3>
+                    <p>Valitse oikea vastaus. Saat pisteen jokaisesta oikeasta vastauksesta.</p>
+                </aside>
 
-                <!-- Kysymys tulee tähän Javascriptillä -->
-                <div id="question" class="game-question"></div>
+                <!-- Varsinainen pelialue -->
+                <div class="game-area">
 
-                <!-- Vastausvaihtoehdot tulevat tähän Javascriptillä -->
-                <div id="answers" class="game-answers"></div>
+                    <!-- Kysymys -->
+                    <div id="question" class="game-question"></div>
 
-                <!-- Seuraava-nappi, aktivoituu vasta kun vastaus valittu -->
-                <button id="nextBtn" class="game-next" disabled>Seuraava</button>
-            </div>
+                    <!-- Vastausvaihtoehdot -->
+                    <div id="answers" class="game-answers"></div>
 
-                 <!-- Aloita uudestaan -nappi (piilotettu aluksi) -->
-                <button id="restartBtn" class="game-restart" style="display:none;">Aloita uudestaan</button>
+                    <!-- Seuraava-nappi -->
+                    <button id="nextBtn" class="game-next" disabled>Seuraava</button>
 
-
-            <!-- Pisteet -->
-            <aside class="game-score">
-                <h3>Pisteet</h3>
-
-            <!-- Progressiopalkki -->
-                <div class="progress-wrapper">
-                 <div id="progressBar" class="progress-bar"></div>
+                    <!-- Aloita uudestaan -nappi -->
+                    <button id="restartBtn" class="game-restart" style="display:none;">
+                        Aloita uudestaan
+                    </button>
                 </div>
-                
-                <div id="score">0</div>
-            </aside>
 
+                <!-- Pisteet + progressiopalkki -->
+                <aside class="game-score">
+                    <h3>Pisteet</h3>
+
+                    <!-- Progressiopalkki -->
+                    <div class="progress-wrapper">
+                        <div id="progressBar" class="progress-bar"></div>
+                    </div>
+
+                    <div id="score">0</div>
+                </aside>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-inner">
+            <div>Napapiirin Sankarit 2026</div>
+            <div>Yhteys: <a href="mailto:Sähköposti">Lisätään yhteystiedot</a></div>
         </div>
-    </section>
+    </footer>
 
     <!-- Pelin logiikka -->
     <script src="../js/code.js"></script>
