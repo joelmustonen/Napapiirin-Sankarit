@@ -91,6 +91,24 @@ nav a:hover {
     margin-bottom: 1.5rem;
 }
 
+/* Progressiopalkin tausta */
+.progress-wrapper {
+    width: 100%;
+    height: 18px;
+    background: #73a0fc;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+}
+
+/* itse palkki */
+.progress-bar {
+    height: 100%;
+    width: 0%;
+    background: var(--primary);
+    transition: width 0.4s ease;
+}
+
 /* Vastausnapit */
 .game-answers {
     display: flex;

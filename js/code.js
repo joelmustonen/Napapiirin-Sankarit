@@ -67,7 +67,7 @@ const questions = [
     }
 ];
 
-// Sekoitetaan kysymykset Fisher–Yates algrorytmillä
+// Sekoitetaan kysymykset Fisher–Yates -algoritmilla
 function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -79,8 +79,8 @@ function shuffleArray(array) {
 shuffleArray(questions);
 
 /* muuttujat */
-let currentQuestion = 0; // Seuraa monesko kysymys on menossa
-let score = 0;           // Pelaajan pisteet
+let currentQuestion = 0;
+let score = 0;
 
 /* HTML-elementit */
 const questionEl = document.getElementById("question");
@@ -88,7 +88,15 @@ const answersEl = document.getElementById("answers");
 const scoreEl = document.getElementById("score");
 const nextBtn = document.getElementById("nextBtn");
 const restartBtn = document.getElementById("restartBtn");
+const progressBar = document.getElementById("progressBar");
 
+const totalQuestions = questions.length;
+
+/* Progressiopalkin päivitys */
+function updateProgress() {
+    const progress = (currentQuestion / totalQuestions) * 100;
+    progressBar.style.width = progress + "%";
+}
 
 /* Kysymyksen lataus ruudulle */
 function loadQuestion() {
@@ -106,14 +114,17 @@ function loadQuestion() {
 
     // Luodaan napit sekoitetussa järjestyksessä
     shuffledAnswers.forEach(answerObj => {
-    const btn = document.createElement("button");
-    btn.classList.add("answer-btn");
-    btn.textContent = answerObj.text;
+        const btn = document.createElement("button");
+        btn.classList.add("answer-btn");
+        btn.textContent = answerObj.text;
 
-    btn.onclick = () => selectAnswer(btn, answerObj.index);
+        btn.onclick = () => selectAnswer(btn, answerObj.index);
 
-    answersEl.appendChild(btn);
-});
+        answersEl.appendChild(btn);
+    });
+
+    // Päivitetään progressiopalkki
+    updateProgress();
 
     // Seuraava-nappi pois käytöstä kunnes vastaus valittu
     nextBtn.disabled = true;
@@ -132,53 +143,45 @@ function selectAnswer(button, index) {
         button.classList.add("correct");
         score++;
         scoreEl.textContent = score;
-    } 
-    // Väärä vastaus
-    else {
+    } else {
         button.classList.add("wrong");
         allButtons[q.correct].classList.add("correct");
     }
 
-    // Nyt voi siirtyä seuraavaan kysymykseen
     nextBtn.disabled = false;
 }
 
-/* Seuraava kysymys nappi */
+/* Seuraava kysymys */
 nextBtn.onclick = () => {
     currentQuestion++;
 
-    // Jos kysymyksiä jäljellä = jatketaan
     if (currentQuestion < questions.length) {
         loadQuestion();
-    } 
+    } else {
+        // Peli päättyy
+        questionEl.textContent = "Peli päättyi!";
+        answersEl.innerHTML = "";
+        nextBtn.style.display = "none";
+        restartBtn.style.display = "block";
 
-    // Muuten peli päättyy
-    else {
-    questionEl.textContent = "Peli päättyi!";
-    answersEl.innerHTML = "";
-    nextBtn.style.display = "none";      // Piilotetaan Seuraava-nappi
-    restartBtn.style.display = "block";  // Näytetään Aloita uudestaan -nappi
-}
+        // Täytetään progressiopalkki
+        progressBar.style.width = "100%";
+    }
+};
 
-// Aloita uudestaan -napin toiminto
+/* Aloita uudestaan */
 restartBtn.onclick = () => {
-    // Palautetaan peli alkutilaan
     currentQuestion = 0;
     score = 0;
     scoreEl.textContent = score;
 
-    // Näytetään Seuraava-nappi uudelleen
     nextBtn.style.display = "block";
-
-    // Piilotetaan restart-nappi
     restartBtn.style.display = "none";
 
-    // Ladataan ensimmäinen kysymys
+    shuffleArray(questions); // Sekoitetaan uudelleen
+
     loadQuestion();
 };
 
-
-};
-
-/* Pelin kyännistys */
+/* Pelin käynnistys */
 loadQuestion();
