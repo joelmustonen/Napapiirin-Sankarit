@@ -9,11 +9,24 @@
     --card-bg: #ffffff;
 }
 
-body {
+/* Footerin kiinnitys alareunaan */
+html, body {
+    height: 100%;
     margin: 0;
+}
+
+body {
     font-family: system-ui, sans-serif;
     background: var(--bg);
     color: var(--text);
+
+    display: flex;            /* Mahdollistaa footerin siirtämisen alas */
+    flex-direction: column;   /* Sisältö ylhäältä alas */
+}
+
+/* Sivun pääsisältö venyy täyttämään tilan */
+main {
+    flex: 1;
 }
 
 /* header */
@@ -109,6 +122,8 @@ nav a:hover {
 .section-title {
     font-size: 1.4rem;
     margin-bottom: 1.5rem;
+    text-align: center;
+    width: 100%;
 }
 
 .games-grid {
@@ -162,11 +177,6 @@ nav a:hover {
     gap: 1.5rem;
 }
 
-.section-title {
-    text-align: center;
-    width: 100%;
-}
-
 .info-text h3 {
     margin: 0;
     font-size: 1.2rem;
@@ -178,7 +188,6 @@ nav a:hover {
     font-size: 0.95rem;
     color: var(--muted);
 }
-
 
 /* footer */
 footer {
