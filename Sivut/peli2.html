@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+  <meta charset="UTF-8">
+  <title>Saamen peli</title>
+  <link rel="stylesheet" href="../tyylit/pelisivu2.css">
+</head>
+<body>
+
+<div class="game-container">
+
+  <!-- Yläosa -->
+  <div class="top-bar">
+    <a href="index.html" class="back-btn">← Takaisin</a>
+    <div class="hearts" id="hearts">❤️❤️❤️</div>
+  </div>
+
+  <!-- Progress -->
+  <div class="progress">
+    <div class="progress-bar" id="progress-bar"></div>
+  </div>
+
+  <h2 id="kysymys"></h2>
+
+  <div id="vastaukset" class="answers"></div>
+
+  <p id="tulos"></p>
+
+  <button class="next-btn" onclick="seuraava()">Seuraava</button>
+
+</div>
+
+<script src="../js/koodi.js"></script>
+</body>
+</html>
