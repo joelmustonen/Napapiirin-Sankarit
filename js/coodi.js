@@ -28,13 +28,14 @@ function shuffleArray(array) {
 
 let currentQuestion = 0;
 let score = 0;
-let mistakes = 0; // 🔥 3 elämää
+let mistakes = 0; 
 
 const questionEl = document.getElementById("question");
 const answersEl = document.getElementById("answers");
 const scoreEl = document.getElementById("score");
 const nextBtn = document.getElementById("nextBtn");
 const restartBtn = document.getElementById("restartBtn");
+const closeBtn = document.getElementById("closeBtn"); 
 const progressBar = document.getElementById("progressBar");
 const soundCorrect = document.getElementById("sound-oikea");
 const soundWrong = document.getElementById("sound-väärä");
@@ -97,7 +98,7 @@ function selectAnswer(button, selectedText) {
         soundWrong.currentTime = 0;
         soundWrong.play();
 
-        // 🔥 VÄÄRÄ VASTAUS → LISÄTÄÄN VIRHE
+        
         mistakes++;
 
         if (mistakes >= 3) {
@@ -114,6 +115,7 @@ function endGameLose() {
     answersEl.innerHTML = "";
     nextBtn.style.display = "none";
     restartBtn.style.display = "block";
+    closeBtn.style.display = "block"; 
     progressBar.style.width = "100%";
 }
 
@@ -127,6 +129,7 @@ nextBtn.onclick = () => {
         answersEl.innerHTML = "";
         nextBtn.style.display = "none";
         restartBtn.style.display = "block";
+        closeBtn.style.display = "block"; 
         progressBar.style.width = "100%";
     }
 };
@@ -134,15 +137,22 @@ nextBtn.onclick = () => {
 restartBtn.onclick = () => {
     currentQuestion = 0;
     score = 0;
-    mistakes = 0; // 🔥 NOLLATAAN ELÄMÄT
+    mistakes = 0; 
     scoreEl.textContent = score;
 
     nextBtn.style.display = "block";
     restartBtn.style.display = "none";
+    closeBtn.style.display = "none";
 
     shuffleArray(questions);
     loadQuestion();
 };
 
+
+closeBtn.onclick = () => {
+    window.location.href = "../Sivut/index.html"; 
+};
+
 shuffleArray(questions);
 loadQuestion();
+
