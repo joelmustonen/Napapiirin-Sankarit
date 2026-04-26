@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+<meta charset="UTF-8">
+<title>Saamen numerot peli</title>
+
+<style>
+body {
+    font-family: Arial;
+    text-align: center;
+    background: #eef;
+}
+
+#quiz-box {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 500px;
+    margin: auto;
+}
+
+button {
+    margin: 5px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.correct {
+    background-color: lightgreen;
+}
+
+.wrong {
+    background-color: salmon;
+}
+
+#progress-container {
+    width: 100%;
+    background: #ccc;
+    height: 10px;
+    margin-bottom: 10px;
+}
+
+#progressBar {
+    height: 10px;
+    width: 0%;
+    background: green;
+}
+</style>
+
+</head>
+<body>
+
+<div id="quiz-box">
+
+<h2>Saamen numerot peli</h2>
+
+<div id="progress-container">
+    <div id="progressBar"></div>
+</div>
+
+<p id="question"></p>
+<div id="answers"></div>
+
+<p>Pisteet: <span id="score">0</span></p>
+
+<button id="nextBtn">Seuraava</button>
+<button id="restartBtn" style="display:none;">Aloita alusta</button>
+
+</div>
+
+
+<audio id="sound-oikea" src="https://www.soundjay.com/buttons/sounds/button-3.mp3"></audio>
+<audio id="sound-väärä" src="https://www.soundjay.com/buttons/sounds/button-10.mp3"></audio>
+
+<script src="code.js"></script>
+
+</body>
+</html>
