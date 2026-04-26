@@ -28,17 +28,18 @@ function shuffleArray(array) {
 
 let currentQuestion = 0;
 let score = 0;
-let mistakes = 0; 
+let mistakes = 0;
 
 const questionEl = document.getElementById("question");
 const answersEl = document.getElementById("answers");
 const scoreEl = document.getElementById("score");
 const nextBtn = document.getElementById("nextBtn");
 const restartBtn = document.getElementById("restartBtn");
-const closeBtn = document.getElementById("closeBtn"); 
+const closeBtn = document.getElementById("closeBtn");
 const progressBar = document.getElementById("progressBar");
 const soundCorrect = document.getElementById("sound-oikea");
 const soundWrong = document.getElementById("sound-väärä");
+const livesEl = document.getElementById("lives");
 
 const totalQuestions = questions.length;
 
@@ -100,6 +101,7 @@ function selectAnswer(button, selectedText) {
 
         
         mistakes++;
+        livesEl.textContent = "❤️".repeat(3 - mistakes);
 
         if (mistakes >= 3) {
             endGameLose();
@@ -115,7 +117,7 @@ function endGameLose() {
     answersEl.innerHTML = "";
     nextBtn.style.display = "none";
     restartBtn.style.display = "block";
-    closeBtn.style.display = "block"; 
+    closeBtn.style.display = "block";
     progressBar.style.width = "100%";
 }
 
@@ -129,7 +131,7 @@ nextBtn.onclick = () => {
         answersEl.innerHTML = "";
         nextBtn.style.display = "none";
         restartBtn.style.display = "block";
-        closeBtn.style.display = "block"; 
+        closeBtn.style.display = "block";
         progressBar.style.width = "100%";
     }
 };
@@ -137,8 +139,9 @@ nextBtn.onclick = () => {
 restartBtn.onclick = () => {
     currentQuestion = 0;
     score = 0;
-    mistakes = 0; 
+    mistakes = 0;
     scoreEl.textContent = score;
+    livesEl.textContent = "❤️❤️❤️";
 
     nextBtn.style.display = "block";
     restartBtn.style.display = "none";
@@ -148,11 +151,11 @@ restartBtn.onclick = () => {
     loadQuestion();
 };
 
-
 closeBtn.onclick = () => {
-    window.location.href = "../Sivut/index.html"; 
+    window.location.href = "../Sivut/index.html";
 };
 
 shuffleArray(questions);
 loadQuestion();
+
 
