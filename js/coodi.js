@@ -61,25 +61,31 @@ function loadQuestion() {
     shuffleArray(shuffledAnswers);
 
     shuffledAnswers.forEach(answerObj => {
-        const btn = document.createElement("button");
-        btn.classList.add("answer-btn");
-        btn.textContent = answerObj.text;
-        btn.onclick = () => selectAnswer(btn, answerObj.index);
-        answersEl.appendChild(btn);
-    });
+    const btn = document.createElement("button");
+    btn.classList.add("answer-btn");
+    btn.textContent = answerObj.text;
+
+    btn.onclick = () => {
+        selectAnswer(btn, answerObj.text);
+    };
+
+    answersEl.appendChild(btn);
+});
 
     updateProgress();
     nextBtn.disabled = true;
 }
 
 
-function selectAnswer(button, index) {
+function selectAnswer(button, selectedText) {
     const q = questions[currentQuestion];
     const allButtons = document.querySelectorAll(".answer-btn");
 
     allButtons.forEach(btn => btn.disabled = true);
 
-    if (index === q.correct) {
+    const correctText = q.answers[q.correct];
+
+    if (selectedText === correctText) {
         button.classList.add("correct");
         score++;
         scoreEl.textContent = score;
@@ -87,13 +93,20 @@ function selectAnswer(button, index) {
         soundCorrect.play();
     } else {
         button.classList.add("wrong");
-        allButtons[q.correct].classList.add("correct");
+
+        allButtons.forEach(btn => {
+            if (btn.textContent === correctText) {
+                btn.classList.add("correct");
+            }
+        });
+
         soundWrong.currentTime = 0;
         soundWrong.play();
     }
 
     nextBtn.disabled = false;
 }
+
 
 
 nextBtn.onclick = () => {
