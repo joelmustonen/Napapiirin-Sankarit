@@ -1,4 +1,3 @@
-
 const questions = [
     {question:"Mitä tarkoittaa 'okta'?", answers:["1","2","3","4"], correct:0},
     {question:"Mitä tarkoittaa 'guokte'?", answers:["2","3","4","5"], correct:0},
@@ -20,7 +19,6 @@ const questions = [
     {question:"Mikä on 8 saameksi?", answers:["vihtta","guhtta","čieža","gávcci"], correct:3}
 ];
 
-
 function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -28,10 +26,9 @@ function shuffleArray(array) {
     }
 }
 
-
 let currentQuestion = 0;
 let score = 0;
-
+let mistakes = 0; // 🔥 3 elämää
 
 const questionEl = document.getElementById("question");
 const answersEl = document.getElementById("answers");
@@ -44,12 +41,10 @@ const soundWrong = document.getElementById("sound-väärä");
 
 const totalQuestions = questions.length;
 
-
 function updateProgress() {
     const progress = (currentQuestion / totalQuestions) * 100;
     progressBar.style.width = progress + "%";
 }
-
 
 function loadQuestion() {
     const q = questions[currentQuestion];
@@ -61,21 +56,20 @@ function loadQuestion() {
     shuffleArray(shuffledAnswers);
 
     shuffledAnswers.forEach(answerObj => {
-    const btn = document.createElement("button");
-    btn.classList.add("answer-btn");
-    btn.textContent = answerObj.text;
+        const btn = document.createElement("button");
+        btn.classList.add("answer-btn");
+        btn.textContent = answerObj.text;
 
-    btn.onclick = () => {
-        selectAnswer(btn, answerObj.text);
-    };
+        btn.onclick = () => {
+            selectAnswer(btn, answerObj.text);
+        };
 
-    answersEl.appendChild(btn);
-});
+        answersEl.appendChild(btn);
+    });
 
     updateProgress();
     nextBtn.disabled = true;
 }
-
 
 function selectAnswer(button, selectedText) {
     const q = questions[currentQuestion];
@@ -102,12 +96,26 @@ function selectAnswer(button, selectedText) {
 
         soundWrong.currentTime = 0;
         soundWrong.play();
+
+        // 🔥 VÄÄRÄ VASTAUS → LISÄTÄÄN VIRHE
+        mistakes++;
+
+        if (mistakes >= 3) {
+            endGameLose();
+            return;
+        }
     }
 
     nextBtn.disabled = false;
 }
 
-
+function endGameLose() {
+    questionEl.textContent = "Hävisit pelin! Teit 3 virhettä.";
+    answersEl.innerHTML = "";
+    nextBtn.style.display = "none";
+    restartBtn.style.display = "block";
+    progressBar.style.width = "100%";
+}
 
 nextBtn.onclick = () => {
     currentQuestion++;
@@ -123,20 +131,18 @@ nextBtn.onclick = () => {
     }
 };
 
-
 restartBtn.onclick = () => {
     currentQuestion = 0;
     score = 0;
+    mistakes = 0; // 🔥 NOLLATAAN ELÄMÄT
     scoreEl.textContent = score;
 
     nextBtn.style.display = "block";
     restartBtn.style.display = "none";
 
     shuffleArray(questions);
-
     loadQuestion();
 };
-
 
 shuffleArray(questions);
 loadQuestion();
