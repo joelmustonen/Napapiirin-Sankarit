@@ -3,37 +3,54 @@
 <head>
 <meta charset="UTF-8">
 <title>Saamen numerot peli</title>
-
-
-
+<link rel="stylesheet" href="../tyylit/pelisivu.css">
 </head>
+
 <body>
 
-<div id="quiz-box">
+<main>
+    <div class="game-container">
 
-<h2>Saamen numerot peli</h2>
+        
+        <aside class="game-sidebar">
+            <h3>Ohjeet</h3>
+            <p>Valitse oikea vastaus. Saat pisteen jokaisesta oikeasta vastauksesta.</p>
+        </aside>
 
-<div id="progress-container">
-    <div id="progressBar"></div>
-</div>
+        
+        <section class="game-area">
 
-<p id="question"></p>
-<div id="answers"></div>
+            <h2 class="game-question" id="question">Kysymys tulee tähän</h2>
 
-<p>Pisteet: <span id="score">0</span></p>
+            
+            <div class="progress-wrapper">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
 
-<button id="nextBtn">Seuraava</button>
-<button id="restartBtn" style="display:none;">Aloita alusta</button>
+            
+            <div class="game-answers" id="answers"></div>
 
-</div>
+            
+            <button class="game-next" id="nextBtn" disabled>Seuraava</button>
+
+            
+            <button class="game-restart" id="restartBtn" style="display:none;">Aloita alusta</button>
+
+        </section>
+
+        
+        <aside class="game-score">
+            <h3>Pisteet</h3>
+            <p><span id="score">0</span></p>
+        </aside>
+
+    </div>
+</main>
 
 
-<audio id="sound-oikea" src="https://www.soundjay.com/buttons/sounds/button-3.mp3"></audio>
-<audio id="sound-väärä" src="https://www.soundjay.com/buttons/sounds/button-10.mp3"></audio>
-
-<link rel="stylesheet" href="../tyylit/pelisivu.css">
+<audio id="sound-oikea" src="../äänet/oikea.mp3"></audio>
+<audio id="sound-väärä" src="../äänet/väärä.mp3"></audio>
 
 <script src="../js/coodi.js"></script>
-
 </body>
 </html>
