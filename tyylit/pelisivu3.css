@@ -1,0 +1,110 @@
+/* Tausta */
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: linear-gradient(135deg, #4facfe, #00f2fe);
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+/* Pelilaatikko */
+#quiz-box {
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    max-width: 500px;
+    margin: 60px auto;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    animation: fadeIn 0.6s ease;
+}
+
+/* Otsikko */
+h2 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Kysymys */
+#question {
+    font-size: 20px;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+/* Vastaukset */
+button {
+    display: block;
+    width: 100%;
+    margin: 8px 0;
+    padding: 12px;
+    font-size: 16px;
+    border: none;
+    border-radius: 10px;
+    background: #f1f1f1;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+/* Hover efekti */
+button:hover:not(:disabled) {
+    background: #ddd;
+    transform: scale(1.02);
+}
+
+/* Oikea */
+.correct {
+    background-color: #4CAF50 !important;
+    color: white;
+}
+
+/* Väärä */
+.wrong {
+    background-color: #e74c3c !important;
+    color: white;
+}
+
+/* Disable */
+button:disabled {
+    cursor: not-allowed;
+    opacity: 0.8;
+}
+
+/* Pisteet */
+#score {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+/* Progress bar */
+#progress-container {
+    width: 100%;
+    background: #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+    height: 12px;
+    margin-bottom: 20px;
+}
+
+#progressBar {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #00c853, #64dd17);
+    transition: width 0.3s ease;
+}
+
+/* Napit alhaalla */
+#nextBtn, #restartBtn {
+    margin-top: 15px;
+    background: #4facfe;
+    color: white;
+}
+
+#nextBtn:hover, #restartBtn:hover {
+    background: #3a8ee6;
+}
+
+/* Animaatio */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
