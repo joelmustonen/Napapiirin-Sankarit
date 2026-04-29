@@ -1,0 +1,99 @@
+:root {
+    --primary: #1e88e5;
+    --primary-light: #42a5f5;
+    --accent: #ff9800;
+    --accent-light: #ffb74d;
+    --text: #1f2430;
+    --muted: #6b7280;
+    --card-bg: #ffffff;
+    --bg: #f0f7ff;
+    --success: #4ade80;
+    --danger: #f87171;
+}
+
+/* STICKY FOOTER - TÄRKEÄ OSA                    */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    font-family: system-ui, -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.5;
+}
+
+/* Main venyy ja työntää footerin alas */
+main {
+    flex: 1;
+}
+
+nav {
+    display: flex;
+    gap: 1.25rem;
+}
+
+nav a {
+    text-decoration: none;
+    color: var(--text);
+    padding-bottom: 4px;
+    border-bottom: 2px solid transparent;
+}
+
+nav a.active,
+nav a:hover {
+    border-color: var(--accent);
+}
+
+
+/* Header                                        */
+header {
+    background: #fff;
+    border-bottom: 1px solid #e5e7eb;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.header-inner {
+    max-width: 1200px;
+    margin: auto;
+    padding: 0.75rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo { height: 52px; }
+
+/* Pelialueen layout                             */
+.game-container {
+    display: grid;
+    grid-template-columns: 280px 1fr 280px;
+    gap: 2rem;
+    max-width: 1280px;
+    margin: 2rem auto;
+    padding: 1rem 1.5rem;
+}
+
+/* Sivupalkit */
+.game-sidebar,
+.game-score {
+    background: var(--card-bg);
+    padding: 1.8rem 1.4rem;
+    border-radius: 1.25rem;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.07);
+    border: 1px solid #f0f0f0;
+}
+
+/* Pelialue */
+.game-area {
+    background: var(--card-bg);
+    padding: 2.5rem 2rem;
+    border-radius: 2rem;
+    box-shadow: 0 10px 30px rgba(30, 136, 229, 0.12),
+... (143 riviä jäljellä)
