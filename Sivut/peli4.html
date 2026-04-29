@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+    <meta charset="UTF-8">
+    <title>Saamenkielen eläinpeli</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Pelisivun oma CSS -->
+    <link rel="stylesheet" href="../tyylit/pelisivu.css">
+</head>
+
+<body>
+
+    <!-- Pelin vastauksille äänet -->
+    <audio id="sound-väärä" src="../äänet/väärä.mp3"></audio>
+    <audio id="sound-oikea" src="../äänet/oikea.mp3"></audio>
+
+    <!-- Header -->
+    <header>
+        <div class="header-inner">
+            <div class="logo-area">
+                <img src="NP.png" alt="Logo" class="logo">
+                <div class="site-title">Napapiirin Sankarit</div>
+            </div>
+
+            <nav>
+                <a href="index.html">Aloitus</a>
+                <a href="peli.html">Saamenkielen peli</a>
+                <a href="peli4.html" class="active">Eläinpeli</a>
+                <a href="#">Peli 3</a>
+                <a href="#">Peli 4</a>
+                <a href="#">Peli 5</a>
+                <a href="index.html#info">Tietoa projektista</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Koko pelin sisältö -->
+    <main>
+
+        <!-- Peliosa -->
+        <section class="section" id="game">
+            <h2 class="section-title">Saamenkielen eläinpeli</h2>
+
+            <!-- Pelin container -->
+            <div class="game-container">
+
+                <!-- Ohjeet -->
+                <aside class="game-sidebar">
+                    <h3>Ohjeet</h3>
+                    <p>
+                        Valitse oikea vastaus. Kysymys voi olla saameksi tai suomeksi,
+                        ja sinun pitää kääntää eläimen nimi toiseen kieleen.
+                        Saat pisteen jokaisesta oikeasta vastauksesta.
+                    </p>
+                </aside>
+
+                <!-- Varsinainen pelialue -->
+                <div class="game-area">
+
+                    <!-- Kysymys -->
+                    <div id="question" class="game-question"></div>
+
+                    <!-- Vastausvaihtoehdot -->
+                    <div id="answers" class="game-answers"></div>
+
+                    <!-- Seuraava-nappi -->
+                    <button id="nextBtn" class="game-next" disabled>Seuraava</button>
+
+                    <!-- Aloita uudestaan -nappi -->
+                    <button id="restartBtn" class="game-restart" style="display:none;">
+                        Aloita uudestaan
+                    </button>
+                </div>
+
+                <!-- Pisteet + elämät + progressiopalkki -->
+                <aside class="game-score">
+                    <h3>Pisteet</h3>
+
+                    <!-- Elämät -->
+                    <div id="lives" class="lives"></div>
+
+                    <!-- Progressiopalkki -->
+                    <div class="progress-wrapper">
+                        <div id="progressBar" class="progress-bar"></div>
+                    </div>
+
+                    <div id="score">0</div>
+                </aside>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-inner">
+            <div>Napapiirin Sankarit 2026</div>
+            <div>Yhteys: <a href="mailto:Sähköposti">Lisätään yhteystiedot</a></div>
+        </div>
+    </footer>
+
+    <!-- Pelin logiikka -->
+    <script src="../js/elaimet.js"></script>
+
+</body>
+</html>
