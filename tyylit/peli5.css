@@ -1,88 +1,241 @@
-<!DOCTYPE html>
-<html lang="fi">
-<head>
-<meta charset="UTF-8">
-<title>Saamen numerot peli</title>
-<link rel="stylesheet" href="../tyylit/peli5.css">
-</head>
+:root {
+    --primary: #1e88e5;
+    --primary-light: #42a5f5;
+    --accent: #ff9800;
+    --accent-light: #ffb74d;
+    --text: #1f2430;
+    --muted: #6b7280;
+    --card-bg: #ffffff;
+    --bg: #f0f7ff;
+    --success: #4ade80;
+    --danger: #f87171;
+}
 
-<body>
-        <header>
-        <div class="header-inner">
-            <div class="logo-area">
-                <img src="NP.png" alt="Logo" class="logo">
-                <div class="site-title">Napapiirin Sankarit</div>
-            </div>
+/* STICKY FOOTER - TÄRKEÄ OSA                    */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
 
-                <nav>
-                <a href="index.html">Aloitus</a>
-                <a href="peli.html">Saamenkielen peli</a>
-                <a href="peli2.html">Peli 2</a>
-                <a href="peli3.html">Peli 3</a>
-                <a href="peli4.html">Peli 4</a>
-                  <a href="peli5.html" class="active">Numeropeli</a>
-                <a href="index.html#info">Tietoa projektista</a>
-            </nav>
-        </div>
-    </header>
+body {
+    display: flex;
+    flex-direction: column;
+    font-family: system-ui, -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.5;
+}
 
-<main>
-    <div class="game-container">
+/* Main venyy ja työntää footerin alas */
+main {
+    flex: 1;
+}
 
-        
-        <aside class="game-sidebar">
-            <h3>Ohjeet</h3>
-            <p>Valitse oikea vastaus. Saat pisteen jokaisesta oikeasta vastauksesta.</p>
-        </aside>
+nav {
+    display: flex;
+    gap: 1.25rem;
+}
 
-        
-        <section class="game-area">
+nav a {
+    text-decoration: none;
+    color: var(--text);
+    padding-bottom: 4px;
+    border-bottom: 2px solid transparent;
+}
 
-            <h2 class="game-question" id="question">Kysymys tulee tähän</h2>
-
-            
-            <div class="progress-wrapper">
-                <div class="progress-bar" id="progressBar"></div>
-            </div>
-
-            
-            <div class="game-answers" id="answers"></div>
-
-            
-            <button class="game-next" id="nextBtn" disabled>Seuraava</button>
-
-            
-            <button class="game-restart" id="restartBtn" style="display:none;">Aloita alusta</button>
-
-            
-            <button class="game-restart" id="closeBtn" style="display:none;">Sulje</button>
-
-        </section>
-
-        
-        <aside class="game-score">
-            <h3>Pisteet</h3>
-            <p><span id="score">0</span></p>
-
-            <h3>Energia</h3>
-            <p id="lives">⚡</p>
-        </aside>
-
-    </div>
-</main>
-
-    <!-- Footer -->
-    <footer>
-        <div class="footer-inner">
-            <div>Napapiirin Sankarit 2026</div>
-            <div>Yhteys: <a href="mailto:Sähköposti">Lisätään yhteystiedot</a></div>
-        </div>
-    </footer>
+nav a.active,
+nav a:hover {
+    border-color: var(--accent);
+}
 
 
-<audio id="sound-oikea" src="../äänet/oikea.mp3"></audio>
-<audio id="sound-väärä" src="../äänet/väärä.mp3"></audio>
+/* Header                                        */
+header {
+    background: #fff;
+    border-bottom: 1px solid #e5e7eb;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
 
-<script src="../js/numeropeli.js"></script>
-</body>
-</html>
+.header-inner {
+    max-width: 1200px;
+    margin: auto;
+    padding: 0.75rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo { height: 52px; }
+
+/* Pelialueen layout                             */
+.game-container {
+    display: grid;
+    grid-template-columns: 280px 1fr 280px;
+    gap: 2rem;
+    max-width: 1280px;
+    margin: 2rem auto;
+    padding: 1rem 1.5rem;
+}
+
+/* Sivupalkit */
+.game-sidebar,
+.game-score {
+    background: var(--card-bg);
+    padding: 1.8rem 1.4rem;
+    border-radius: 1.25rem;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.07);
+    border: 1px solid #f0f0f0;
+}
+
+/* Pelialue */
+.game-area {
+    background: var(--card-bg);
+    padding: 2.5rem 2rem;
+    border-radius: 2rem;
+    box-shadow: 0 10px 30px rgba(30, 136, 229, 0.12),
+                inset 0 4px 12px rgba(255,255,255,0.6);
+    border: 3px solid #e0f0ff;
+    position: relative;
+    overflow: hidden;
+}
+
+.game-area::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.7) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Kysymys */
+.game-question {
+    font-size: 1.55rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+    color: var(--text);
+    position: relative;
+    z-index: 1;
+}
+
+/* Progress bar */
+.progress-wrapper {
+    width: 100%;
+    height: 22px;
+    background: #e0e7ff;
+    border-radius: 999px;
+    overflow: hidden;
+    margin-bottom: 2rem;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.08);
+}
+
+.progress-bar {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, var(--primary), var(--primary-light));
+    transition: width 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    border-radius: 999px;
+}
+
+/* Vastausnapit */
+.game-answers {
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+}
+
+.answer-btn {
+    padding: 1.1rem 1.4rem;
+    border-radius: 1rem;
+    border: 3px solid #c3d9ff;
+    background: white;
+    cursor: pointer;
+    font-size: 1.1rem;
+    text-align: left;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+}
+
+.answer-btn:hover {
+    transform: translateY(-3px);
+    border-color: var(--primary-light);
+    box-shadow: 0 8px 20px rgba(30, 136, 229, 0.2);
+}
+
+.answer-btn.correct {
+    background: #d1fae5;
+    border-color: #10b981;
+}
+
+.answer-btn.wrong {
+    background: #fee2e2;
+    border-color: #ef4444;
+}
+
+/* Napit */
+.game-next {
+    margin-top: 2.2rem;
+    padding: 0.95rem 2rem;
+    border-radius: 9999px;
+    border: none;
+    background: linear-gradient(90deg, var(--primary), var(--primary-light));
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 6px 15px rgba(30, 136, 229, 0.3);
+}
+
+.game-next:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(30, 136, 229, 0.4);
+}
+
+.game-restart {
+    display: block;
+    margin: 2rem auto 0;
+    padding: 0.9rem 2rem;
+    border-radius: 9999px;
+    border: none;
+    background: linear-gradient(90deg, var(--accent), var(--accent-light));
+    color: #1f2430;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 6px 15px rgba(245, 158, 11, 0.3);
+}
+
+.game-restart:hover {
+    transform: translateY(-2px);
+}
+
+/* FOOTER   */
+footer {
+    background: #1f2937;
+    color: #9ca3af;
+    margin-top: auto;
+    padding: 1.5rem 0;
+}
+
+.footer-inner {
+    max-width: 1200px;
+    margin: auto;
+    padding: 0 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Responsiivisuus */
+@media (max-width: 960px) {
+    .game-container {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+}
