@@ -1,64 +1,88 @@
-/* --- NUMEROPELI (Vain sinun osuutesi) --- */
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+<meta charset="UTF-8">
+<title>Saamen numerot peli</title>
+<link rel="stylesheet" href="../tyylit/peli5.css">
+</head>
 
-const numGameNumbers = [
-    { s: "okta", n: 1 }, { s: "guokte", n: 2 }, { s: "golbma", n: 3 },
-    { s: "njeallje", n: 4 }, { s: "vihtta", n: 5 }, { s: "guhtta", n: 6 },
-    { s: "čieža", n: 7 }, { s: "gávcci", n: 8 }, { s: "ovcci", n: 9 }, { s: "logi", n: 10 }
-];
+<body>
+        <header>
+        <div class="header-inner">
+            <div class="logo-area">
+                <img src="NP.png" alt="Logo" class="logo">
+                <div class="site-title">Napapiirin Sankarit</div>
+            </div>
 
-let currentTargetNum;
-const numSoundCorrect = new Audio('../äänet/oikea.mp3');
-const numSoundWrong = new Audio('../äänet/väärä.mp3');
+                <nav>
+                <a href="index.html">Aloitus</a>
+                <a href="peli.html" class="active">Saamenkielen peli</a>
+                <a href="#">Peli 2</a>
+                <a href="#">Peli 3</a>
+                <a href="#">Peli 4</a>
+                <a href="#">Peli 5</a>
+                <a href="index.html#info">Tietoa projektista</a>
+            </nav>
+        </div>
+    </header>
 
-function initNumberGame() {
-    const answerContainer = document.getElementById('answers');
-    const targetDisplay = document.getElementById('target-word');
-    const feedback = document.getElementById('feedback');
+<main>
+    <div class="game-container">
 
-    // Jos näitä ei löydy, ollaan väärällä sivulla -> älä tee mitään
-    if (!answerContainer || !targetDisplay) return;
+        
+        <aside class="game-sidebar">
+            <h3>Ohjeet</h3>
+            <p>Valitse oikea vastaus. Saat pisteen jokaisesta oikeasta vastauksesta.</p>
+        </aside>
 
-    if (feedback) feedback.innerText = "";
-    answerContainer.innerHTML = "";
+        
+        <section class="game-area">
 
-    for (let i = 1; i <= 10; i++) {
-        let btn = document.createElement('button');
-        btn.innerText = i;
-        btn.className = "game-btn"; 
-        btn.onclick = () => checkNumberAnswer(i);
-        answerContainer.appendChild(btn);
-    }
-    nextNumberRound();
-}
+            <h2 class="game-question" id="question">Kysymys tulee tähän</h2>
 
-function nextNumberRound() {
-    const targetDisplay = document.getElementById('target-word');
-    if (!targetDisplay) return;
-    
-    currentTargetNum = numGameNumbers[Math.floor(Math.random() * numGameNumbers.length)];
-    targetDisplay.innerText = currentTargetNum.s;
-}
+            
+            <div class="progress-wrapper">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
 
-function checkNumberAnswer(chosenNum) {
-    const feedback = document.getElementById('feedback');
-    
-    if (chosenNum === currentTargetNum.n) {
-        if (feedback) {
-            feedback.innerText = "Vuoitu! (Oikein!)";
-            feedback.style.color = "green";
-        }
-        numSoundCorrect.currentTime = 0;
-        numSoundCorrect.play();
-        setTimeout(initNumberGame, 1500); 
-    } else {
-        if (feedback) {
-            feedback.innerText = "Geahččal oktii vel! (Yritä uudelleen!)";
-            feedback.style.color = "red";
-        }
-        numSoundWrong.currentTime = 0;
-        numSoundWrong.play();
-    }
-}
+            
+            <div class="game-answers" id="answers"></div>
 
-// Käynnistää pelin kun sivu on ladattu
-window.addEventListener('load', initNumberGame);
+            
+            <button class="game-next" id="nextBtn" disabled>Seuraava</button>
+
+            
+            <button class="game-restart" id="restartBtn" style="display:none;">Aloita alusta</button>
+
+            
+            <button class="game-restart" id="closeBtn" style="display:none;">Sulje</button>
+
+        </section>
+
+        
+        <aside class="game-score">
+            <h3>Pisteet</h3>
+            <p><span id="score">0</span></p>
+
+            <h3>Energia</h3>
+            <p id="lives">⚡</p>
+        </aside>
+
+    </div>
+</main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-inner">
+            <div>Napapiirin Sankarit 2026</div>
+            <div>Yhteys: <a href="mailto:Sähköposti">Lisätään yhteystiedot</a></div>
+        </div>
+    </footer>
+
+
+<audio id="sound-oikea" src="../äänet/oikea.mp3"></audio>
+<audio id="sound-väärä" src="../äänet/väärä.mp3"></audio>
+
+<script src="../js/numeropeli.js"></script>
+</body>
+</html>
