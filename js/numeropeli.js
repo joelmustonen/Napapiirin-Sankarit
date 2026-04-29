@@ -1,3 +1,4 @@
+/* --- PELIN KYSYMYKSET --- */
 const questions = [
     { type: "s2n", question: "Mitä tarkoittaa 'okta'?", answers:["1","2","3","4"], correct:0 },
     { type: "s2n", question: "Mitä tarkoittaa 'guokte'?", answers:["2","3","4","5"], correct:0 },
@@ -20,7 +21,7 @@ const questions = [
     { type: "n2s", question: "Mikä on 8 saameksi?", answers:["vihtta","guhtta","čieža","gávcci"], correct:3 }
 ];
 
-/* ---  sekoitus --- */
+/* --- SEKOITUS --- */
 function shuffleArray(arr) {
     for (let i = arr.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -49,8 +50,8 @@ const totalQuestions = questions.length;
 
 /* --- PÄIVITYKSET --- */
 function updateProgress() {
-    progressBar.style.width = (currentQuestion / totalQuestions) * 100 + "%";
-    livesEl.textContent = "⚡ Energia: " + energy + "%";
+    if (progressBar) progressBar.style.width = (currentQuestion / totalQuestions) * 100 + "%";
+    if (livesEl) livesEl.textContent = "⚡ Energia: " + energy + "%";
 }
 
 /* --- LADATAAN KYSYMYS --- */
@@ -67,9 +68,7 @@ function loadQuestion() {
         const btn = document.createElement("button");
         btn.classList.add("answer-btn");
         btn.textContent = a.text;
-
         btn.onclick = () => selectAnswer(btn, a.index);
-
         answersEl.appendChild(btn);
     });
 
@@ -88,12 +87,83 @@ function selectAnswer(button, chosenIndex) {
         button.classList.add("correct");
         combo++;
         score += 1 + Math.floor(combo / 3); // combo-bonus
-        soundCorrect.play();
+        if (soundCorrect) soundCorrect.play();
     } else {
         button.classList.add("wrong");
         all.forEach(b => {
+            // Etsitään oikea vastaus tekstin perusteella ja korostetaan se
             if (b.textContent === q.answers[q.correct]) b.classList.add("correct");
         });
         combo = 0;
         energy -= 25;
-... (68 riviä jäljellä)
+        if (soundWrong) soundWrong.play();
+
+        if (energy <= 0) {
+            updateProgress();
+            return endGameLose();
+        }
+    }
+
+    scoreEl.textContent = score;
+    nextBtn.disabled = false;
+}
+
+/* --- HÄVIÖ --- */
+function endGameLose() {
+    questionEl.textContent = "Energia loppui! 😢";
+    answersEl.innerHTML = "";
+    nextBtn.style.display = "none";
+    restartBtn.style.display = "block";
+    closeBtn.style.display = "block";
+    if (progressBar) progressBar.style.width = "100%";
+}
+
+/* --- SEURAAVA KYSYMYS --- */
+nextBtn.onclick = () => {
+    currentQuestion++;
+    if (currentQuestion < totalQuestions) {
+        loadQuestion();
+    } else {
+        endGameWin();
+    }
+};
+
+/* --- VOITTO --- */
+function endGameWin() {
+    let grade = "E";
+    if (score >= 15) grade = "A";
+    else if (score >= 12) grade = "B";
+    else if (score >= 9) grade = "C";
+    else if (score >= 6) grade = "D";
+
+    questionEl.textContent = "Peli päättyi! Arvosanasi: " + grade;
+    answersEl.innerHTML = "";
+    nextBtn.style.display = "none";
+    restartBtn.style.display = "block";
+    closeBtn.style.display = "block";
+}
+
+/* --- UUSI PELI --- */
+restartBtn.onclick = () => {
+    currentQuestion = 0;
+    score = 0;
+    combo = 0;
+    energy = 100;
+
+    scoreEl.textContent = score;
+    nextBtn.style.display = "block";
+    restartBtn.style.display = "none";
+    closeBtn.style.display = "none";
+
+    shuffleArray(questions);
+    loadQuestion();
+};
+
+/* --- SULJE PELI --- */
+closeBtn.onclick = () => {
+    window.location.href = "../Sivut/index.html";
+};
+
+/* --- KÄYNNISTYS --- */
+shuffleArray(questions);
+loadQuestion();
